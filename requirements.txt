@@ -11,3 +11,4 @@ flake8
 httpx
 pytest
 pytest-asyncio
+falsk
