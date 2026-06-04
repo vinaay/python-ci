@@ -4,6 +4,8 @@ When you run tests in GitHub Actions, the results aren’t always easy to find. 
 
 Many testing frameworks—including Pytest—can help with this by generating **JUnit reports**.
 
+added the additional package in the requirement.txt
+
 JUnit is a standard test reporting format that summarizes all the tests that were executed and clearly shows which tests passed and which failed. Instead of digging through raw logs, these reports give you a structured view of your test results.
 
 In this lab, you’ll make test results more visible by publishing JUnit reports directly to the GitHub Actions interface.
@@ -14,13 +16,13 @@ To do this, you’ll use the **JUnit Report** action from the GitHub Actions Mar
 
 ## References
 
-| Reference | Description |
-|----------|-------------|
-| [actions/setup-python on GitHub Marketplace](https://github.com/marketplace/actions/setup-python) | GitHub Action for setting up Python environments |
-| [mikepenz/action-junit-report on GitHub Marketplace](https://github.com/marketplace/actions/junit-report-action) | GitHub Action for publishing JUnit test reports |
-| [actions/checkout on GitHub Marketplace](https://github.com/marketplace/actions/checkout) | GitHub Action for checking out repository code |
-| [Documentation for the Python project used for this lesson](./PY_PROJECT_DETAILS.md) | Documentation for the Python project used in this lesson |
-| [The updated workflow for this lesson](./py-ci-workflow.yml) | The complete workflow file for this lesson |
+| Reference                                                                                                        | Description                                              |
+| ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [actions/setup-python on GitHub Marketplace](https://github.com/marketplace/actions/setup-python)                | GitHub Action for setting up Python environments         |
+| [mikepenz/action-junit-report on GitHub Marketplace](https://github.com/marketplace/actions/junit-report-action) | GitHub Action for publishing JUnit test reports          |
+| [actions/checkout on GitHub Marketplace](https://github.com/marketplace/actions/checkout)                        | GitHub Action for checking out repository code           |
+| [Documentation for the Python project used for this lesson](./PY_PROJECT_DETAILS.md)                             | Documentation for the Python project used in this lesson |
+| [The updated workflow for this lesson](./py-ci-workflow.yml)                                                     | The complete workflow file for this lesson               |
 
 ## Lab: Publish Test Results in GitHub Actions
 
@@ -105,31 +107,31 @@ This gives the workflow permission to write test results to the Actions interfac
 1. Open the `README.md` file in your repository.
 2. Replace the existing Pytest step:
 
-    ```yaml
-    - name: Test with pytest
-    run: |
-        pytest
-    ```
+   ```yaml
+   - name: Test with pytest
+   run: |
+       pytest
+   ```
 
-    With the following:
+   With the following:
 
-    ```yaml
-    - name: Test with pytest
-    run: |
-        python -m pytest --verbose --junit-xml=junit.xml
-    - name: Publish Test Report
-    uses: mikepenz/action-junit-report@v3
-    if: success() || failure()
-    with:
-        report_paths: '**/junit.xml'
-        detailed_summary: true
-        include_passed: true
-    ```
+   ```yaml
+   - name: Test with pytest
+   run: |
+       python -m pytest --verbose --junit-xml=junit.xml
+   - name: Publish Test Report
+   uses: mikepenz/action-junit-report@v3
+   if: success() || failure()
+   with:
+       report_paths: '**/junit.xml'
+       detailed_summary: true
+       include_passed: true
+   ```
 
-    This change does two things:
+   This change does two things:
 
-    - Pytest now generates a JUnit XML report
-    - The JUnit Report action publishes the results to the workflow summary
+   - Pytest now generates a JUnit XML report
+   - The JUnit Report action publishes the results to the workflow summary
 
 3. Commit the changes to the workflow file.
 
@@ -149,7 +151,8 @@ You should now a chart of passed, failed, and skipped tests displayed directly o
 
 Most modern test frameworks can produce JUnit reports, making this approach a powerful way to improve visibility and feedback in your CI pipelines.
 
-<!-- FooterStart -->
----
+## <!-- FooterStart -->
+
 [← 01_02 Set Up CI for Javascript](../01_02_set_up_ci_for_javascript/README.md) | [01_04 Set Up CI for Go →](../01_04_set_up_ci_for_go/README.md)
+
 <!-- FooterEnd -->
