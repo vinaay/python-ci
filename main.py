@@ -9,7 +9,7 @@ from fastapi import FastAPI, HTTPException, status
 
 from config import get_settings, validate_data_file_path
 
-# Configure logging
+# Configure logging, can be further enhanced to log to files or external systems if needed
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
