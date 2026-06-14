@@ -1,0 +1,17 @@
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+env/
+.venv/
+venv/
+.dist-info
+.eggs
+build/
+dist/
+.git
+.gitignore
+Dockerfile
+README.md
+PY_PROJECT_DETAILS.md
+.github
